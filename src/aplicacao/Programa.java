@@ -17,22 +17,7 @@ public class Programa {
 
 		EstoqueService estoque = new EstoqueService();
 
-		estoque.cadastrarProduto(new Produto(101, "Teclado", "Periféricos", 120.00, 10, 3));
-		estoque.cadastrarProduto(new Produto(102, "Mouse", "Periféricos", 55.90, 15, 5));
-		estoque.cadastrarProduto(new Produto(103, "Monitor", "Monitores", 899.90, 4, 5));
-		estoque.cadastrarProduto(new Produto(104, "Cabo HDMI", "Acessórios", 25.50, 20, 10));
-		estoque.cadastrarProduto(new Produto(105, "Notebook", "Computadores", 3500.00, 2, 3));
-		
-		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(101), TipoMovimentacao.ENTRADA, 5));
-		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(102), TipoMovimentacao.SAIDA, 3));
-		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(103), TipoMovimentacao.ENTRADA, 2));
-		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(104), TipoMovimentacao.SAIDA, 4));
-		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(105), TipoMovimentacao.ENTRADA, 3));
-		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(101), TipoMovimentacao.SAIDA, 2));
-		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(102), TipoMovimentacao.ENTRADA, 7));
-		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(103), TipoMovimentacao.SAIDA, 1));
-		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(104), TipoMovimentacao.ENTRADA, 10));
-		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(105), TipoMovimentacao.SAIDA, 1));
+		estoque.cadastrarDadosTeste();
 
 		int resposta;
 

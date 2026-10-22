@@ -5,6 +5,7 @@ import java.util.List;
 
 import entidades.Movimentacao;
 import entidades.Produto;
+import entidades.TipoMovimentacao;
 
 public class EstoqueService {
 
@@ -76,5 +77,25 @@ public class EstoqueService {
 		for (Movimentacao m : movimentacoes) {
 			System.out.println(m);
 		}
+	}
+	
+	public void cadastrarDadosTeste() {
+
+	    cadastrarProduto(new Produto(101, "Teclado", "Periféricos", 120.00, 10, 3));
+	    cadastrarProduto(new Produto(102, "Mouse", "Periféricos", 55.90, 15, 5));
+	    cadastrarProduto(new Produto(103, "Monitor", "Monitores", 899.90, 4, 5));
+	    cadastrarProduto(new Produto(104, "Cabo HDMI", "Acessórios", 25.50, 20, 10));
+	    cadastrarProduto(new Produto(105, "Notebook", "Computadores", 3500.00, 2, 3));
+
+	    registrarEntrada(new Movimentacao(buscarProduto(101), TipoMovimentacao.ENTRADA, 5));
+	    registrarSaida(new Movimentacao(buscarProduto(102), TipoMovimentacao.SAIDA, 3));
+	    registrarEntrada(new Movimentacao(buscarProduto(103), TipoMovimentacao.ENTRADA, 2));
+	    registrarSaida(new Movimentacao(buscarProduto(104), TipoMovimentacao.SAIDA, 4));
+	    registrarEntrada(new Movimentacao(buscarProduto(105), TipoMovimentacao.ENTRADA, 3));
+	    registrarSaida(new Movimentacao(buscarProduto(101), TipoMovimentacao.SAIDA, 2));
+	    registrarEntrada(new Movimentacao(buscarProduto(102), TipoMovimentacao.ENTRADA, 7));
+	    registrarSaida(new Movimentacao(buscarProduto(103), TipoMovimentacao.SAIDA, 1));
+	    registrarEntrada(new Movimentacao(buscarProduto(104), TipoMovimentacao.ENTRADA, 10));
+	    registrarSaida(new Movimentacao(buscarProduto(105), TipoMovimentacao.SAIDA, 1));
 	}
 }
