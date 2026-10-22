@@ -112,11 +112,11 @@ public class Programa {
 
 				break;
 			case 4:
-				
+
 				System.out.println();
 				System.out.println("REGISTRAR ENTRADA DE PRODUTO");
 				System.out.println();
-				
+
 				do {
 
 					System.out.print("Codigo do produto: ");
@@ -127,17 +127,16 @@ public class Programa {
 
 					if (produto == null) {
 						System.out.println("Produto não encontrado. Tente novamente.");
-						
 					}
 				} while (produto == null);
-				
+
 				System.out.println();
 				System.out.print("Quantidade de entrada: ");
 				quantidade = sc.nextInt();
 				sc.nextLine();
-				
+
 				estoque.registrarEntrada(new Movimentacao(produto, TipoMovimentacao.ENTRADA, quantidade));
-				
+
 				System.out.println();
 				System.out.println("Entrada registrada com sucesso!");
 				sc.nextLine();
@@ -145,6 +144,35 @@ public class Programa {
 				break;
 			case 5:
 
+				System.out.println();
+				System.out.println("REGISTRAR SAIDA DE PRODUTO");
+				System.out.println();
+
+				do {
+
+					System.out.print("Codigo do produto: ");
+					codigo = sc.nextInt();
+					sc.nextLine();
+
+					produto = estoque.buscarProduto(codigo);
+
+					if (produto == null) {
+						System.out.println("Produto não encontrado. Tente novamente.");
+					}
+				} while (produto == null);
+
+				System.out.println();
+				System.out.print("Quantidade de saida: ");
+				quantidade = sc.nextInt();
+				sc.nextLine();
+
+				estoque.registrarSaida(new Movimentacao(produto, TipoMovimentacao.SAIDA, quantidade));
+
+				System.out.println();
+				System.out.println("Saida registrada com sucesso!");
+				sc.nextLine();
+				
+				
 				break;
 			case 6:
 

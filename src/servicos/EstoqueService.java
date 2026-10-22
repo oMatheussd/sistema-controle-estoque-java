@@ -34,15 +34,15 @@ public class EstoqueService {
 		movimentacoes.add(movimentacao);
 		Produto produto = movimentacao.getProduto();
 		produto.setQuantidade(produto.getQuantidade() + movimentacao.getQuantidade());
-			
-		
+	}
+
+	public void registrarSaida(Movimentacao movimentacao) {
+		movimentacoes.add(movimentacao);
+		Produto produto = movimentacao.getProduto();
+		produto.setQuantidade(produto.getQuantidade() - movimentacao.getQuantidade());
 	}
 	
 	/*
-
-	public ??? registrarSaida() {
-		
-	}
 	
 	public ??? consultarEstoqueBaixo() {
 		
