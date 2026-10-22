@@ -30,11 +30,15 @@ public class EstoqueService {
 		return null;
 	}	
 	
-	/*
-	
-	public ??? registrarEntrada() {
+	public void registrarEntrada(Movimentacao movimentacao) {
+		movimentacoes.add(movimentacao);
+		Produto produto = movimentacao.getProduto();
+		produto.setQuantidade(produto.getQuantidade() + movimentacao.getQuantidade());
+			
 		
 	}
+	
+	/*
 
 	public ??? registrarSaida() {
 		
