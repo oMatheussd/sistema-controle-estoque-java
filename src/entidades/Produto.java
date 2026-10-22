@@ -68,13 +68,9 @@ public class Produto {
 	
 	@Override
 	public String toString() {
-		return "Código: " 
-				+ codigo
-				+ " | Nome: "
-				+ nome
-				+ " | Quantidade: "
-				+ quantidade 
-				+ " | Preço: "
-				+ preco;
+	    return String.format(
+	            "Código: %-4d | Nome: %-10s | Quantidade: %-3d | Preço: R$ %8.2f",
+	            codigo, nome, quantidade, preco
+	    );
 	}
 }

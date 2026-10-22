@@ -21,11 +21,16 @@ public class EstoqueService {
 		}
 	}
 	
-	/*
-	
-	public Produto buscarProduto(int id) {
+	public Produto buscarProduto(int codigo) {
+		for (Produto p : produtos) {
+			if (p.getCodigo() == codigo) {
+				return p;
+			}
+		}
 		return null;
-	}
+	}	
+	
+	/*
 	
 	public ??? registrarEntrada() {
 		

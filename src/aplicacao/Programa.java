@@ -87,6 +87,27 @@ public class Programa {
 				
 				break;
 			case 3:
+				
+				System.out.println();
+				System.out.println("BUSCAR PRODUTO");
+				System.out.println();
+
+				System.out.print("Codigo do produto: ");
+				codigo = sc.nextInt();
+				sc.nextLine();
+				
+				Produto produto = estoque.buscarProduto(codigo);
+				System.out.println();
+				
+				if (produto == null) {
+					System.out.println("Produto não encontrado. Tente novamente.");
+				}
+				else {
+					System.out.println(produto);
+				}
+				
+				System.out.println();
+				sc.nextLine();
 
 				break;
 			case 4:
