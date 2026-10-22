@@ -22,6 +22,17 @@ public class Programa {
 		estoque.cadastrarProduto(new Produto(103, "Monitor", "Monitores", 899.90, 4, 5));
 		estoque.cadastrarProduto(new Produto(104, "Cabo HDMI", "Acessórios", 25.50, 20, 10));
 		estoque.cadastrarProduto(new Produto(105, "Notebook", "Computadores", 3500.00, 2, 3));
+		
+		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(101), TipoMovimentacao.ENTRADA, 5));
+		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(102), TipoMovimentacao.SAIDA, 3));
+		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(103), TipoMovimentacao.ENTRADA, 2));
+		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(104), TipoMovimentacao.SAIDA, 4));
+		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(105), TipoMovimentacao.ENTRADA, 3));
+		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(101), TipoMovimentacao.SAIDA, 2));
+		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(102), TipoMovimentacao.ENTRADA, 7));
+		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(103), TipoMovimentacao.SAIDA, 1));
+		estoque.registrarEntrada(new Movimentacao(estoque.buscarProduto(104), TipoMovimentacao.ENTRADA, 10));
+		estoque.registrarSaida(new Movimentacao(estoque.buscarProduto(105), TipoMovimentacao.SAIDA, 1));
 
 		int resposta;
 
@@ -171,31 +182,38 @@ public class Programa {
 				System.out.println();
 				System.out.println("Saida registrada com sucesso!");
 				sc.nextLine();
-				
-				
+
 				break;
 			case 6:
-				
+
 				System.out.println();
 				System.out.println("ESTOQUE BAIXO");
 				System.out.println();
 
 				estoque.consultarEstoqueBaixo();
 				sc.nextLine();
-				
+
 				break;
 			case 7:
-				
+
 				System.out.println();
 				System.out.println("RELATORIO");
 				System.out.println();
-				
+
 				estoque.gerarRelatorio();
 				System.out.println();
 				sc.nextLine();
-				
+
 				break;
 			case 8:
+				
+				System.out.println();
+				System.out.println("MOVIMENTAÇÕES");
+				System.out.println();
+
+				estoque.listarMovimentacoes();
+
+				sc.nextLine();
 
 				break;
 			case 0:

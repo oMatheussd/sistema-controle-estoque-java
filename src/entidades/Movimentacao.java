@@ -1,6 +1,7 @@
 package entidades;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Movimentacao {
 	
@@ -48,4 +49,14 @@ public class Movimentacao {
 		this.dataHora = dataHora;
 	}
 	
+	@Override
+	public String toString() {
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		
+	    return String.format("%-15s | %-7s | %-10d | %s",
+	            produto.getNome(),
+	            tipo,
+	            quantidade,
+	            dataHora.format(formatador));
+	}
 }
