@@ -185,7 +185,15 @@ public class Programa {
 				
 				break;
 			case 7:
-
+				
+				System.out.println();
+				System.out.println("RELATORIO");
+				System.out.println();
+				
+				estoque.gerarRelatorio();
+				System.out.println();
+				sc.nextLine();
+				
 				break;
 			case 8:
 
