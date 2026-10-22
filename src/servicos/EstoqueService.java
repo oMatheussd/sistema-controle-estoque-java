@@ -12,10 +12,12 @@ public class EstoqueService {
 	private List<Movimentacao> movimentacoes = new ArrayList<>();
 	
 	public void cadastrarProduto(Produto produto) {
-		
+		produtos.add(produto);
 	}
 	
-	public void listarProdutos(List<Produto> produtos) {
+	/*
+	
+	public void listarProdutos() {
 		
 	}
 	
@@ -38,4 +40,6 @@ public class EstoqueService {
 	public ??? gerarRelatorio() {
 		
 	}
+	
+	*/
 }
