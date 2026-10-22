@@ -175,7 +175,14 @@ public class Programa {
 				
 				break;
 			case 6:
+				
+				System.out.println();
+				System.out.println("ESTOQUE BAIXO");
+				System.out.println();
 
+				estoque.consultarEstoqueBaixo();
+				sc.nextLine();
+				
 				break;
 			case 7:
 

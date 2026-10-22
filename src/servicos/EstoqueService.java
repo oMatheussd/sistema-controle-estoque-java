@@ -40,13 +40,18 @@ public class EstoqueService {
 		movimentacoes.add(movimentacao);
 		Produto produto = movimentacao.getProduto();
 		produto.setQuantidade(produto.getQuantidade() - movimentacao.getQuantidade());
+	}	
+	
+	public void consultarEstoqueBaixo() {
+		
+		for (Produto p : produtos) {
+			if (p.getQuantidade() <= p.getEstoqueMinimo()) {
+				System.out.println(p);
+			}
+		}
 	}
 	
 	/*
-	
-	public ??? consultarEstoqueBaixo() {
-		
-	}
 	
 	public ??? gerarRelatorio() {
 		
