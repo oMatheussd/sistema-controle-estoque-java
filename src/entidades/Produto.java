@@ -65,4 +65,16 @@ public class Produto {
 	public void setEstoqueMinimo(int estoqueMinimo) {
 		this.estoqueMinimo = estoqueMinimo;
 	}
+	
+	@Override
+	public String toString() {
+		return "Código: " 
+				+ codigo
+				+ " | Nome: "
+				+ nome
+				+ " | Quantidade: "
+				+ quantidade 
+				+ " | Preço: "
+				+ preco;
+	}
 }

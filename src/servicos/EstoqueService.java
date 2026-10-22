@@ -15,11 +15,13 @@ public class EstoqueService {
 		produtos.add(produto);
 	}
 	
-	/*
-	
 	public void listarProdutos() {
-		
+		for (Produto p : produtos) {
+			System.out.println(p);
+		}
 	}
+	
+	/*
 	
 	public Produto buscarProduto(int id) {
 		return null;

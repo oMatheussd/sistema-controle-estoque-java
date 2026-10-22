@@ -14,6 +14,12 @@ public class Programa {
 		Scanner sc = new Scanner(System.in);
 		
 		EstoqueService estoque = new EstoqueService();
+		
+		estoque.cadastrarProduto(new Produto(101, "Teclado", "Periféricos", 120.00, 10, 3));
+		estoque.cadastrarProduto(new Produto(102, "Mouse", "Periféricos", 55.90, 15, 5));
+		estoque.cadastrarProduto(new Produto(103, "Monitor", "Monitores", 899.90, 4, 5));
+		estoque.cadastrarProduto(new Produto(104, "Cabo HDMI", "Acessórios", 25.50, 20, 10));
+		estoque.cadastrarProduto(new Produto(105, "Notebook", "Computadores", 3500.00, 2, 3));
 
 		int resposta;
 
@@ -70,7 +76,15 @@ public class Programa {
 				break;
 
 			case 2:
-
+				
+				System.out.println();
+				System.out.println("PRODUTOS CADASTRADOS");
+				System.out.println();
+				
+				estoque.listarProdutos();
+				
+				sc.nextLine();
+				
 				break;
 			case 3:
 
