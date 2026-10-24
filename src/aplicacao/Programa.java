@@ -1,11 +1,14 @@
 package aplicacao;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
 import entidades.Movimentacao;
 import entidades.Produto;
 import entidades.TipoMovimentacao;
+import servicos.ArquivoService;
 import servicos.EstoqueService;
 
 public class Programa {
@@ -16,8 +19,20 @@ public class Programa {
 		Scanner sc = new Scanner(System.in);
 
 		EstoqueService estoque = new EstoqueService();
+		ArquivoService arquivoService = new ArquivoService();
+		
+		try {
+		    List<Produto> produtos = arquivoService.carregarProdutos();
+		    estoque.definirProdutos(produtos);
 
-		estoque.cadastrarDadosTeste();
+		    List<Movimentacao> movimentacoes =
+		            arquivoService.carregarMovimentacoes(produtos);
+		    estoque.definirMovimentacoes(movimentacoes);
+
+		} catch (IOException e) {
+		    System.out.println("Erro ao carregar arquivos: " + e.getMessage());
+		    return;
+		}
 
 		int resposta, codigo, quantidade;
 		double preco;
@@ -67,6 +82,7 @@ public class Programa {
 					sc.nextLine();
 
 					estoque.cadastrarProduto(new Produto(codigo, nome, categoria, preco, quantidade, estoqueMinimo));
+					arquivoService.salvarProdutos(estoque.getProdutos());
 
 					System.out.println();
 					System.out.println("Produto cadastrado com sucesso!");
@@ -75,6 +91,9 @@ public class Programa {
 					System.out.println();
 					System.out.println(e.getMessage());
 					System.out.println();
+				}
+				catch (IOException e) {
+				    System.out.println("Erro ao salvar arquivos: " + e.getMessage());
 				}
 				
 				sc.nextLine();
@@ -142,13 +161,18 @@ public class Programa {
 					sc.nextLine();
 
 					estoque.registrarEntrada(new Movimentacao(produto, TipoMovimentacao.ENTRADA, quantidade));
-
+					arquivoService.salvarProdutos(estoque.getProdutos());
+					arquivoService.salvarMovimentacoes(estoque.getMovimentacoes());			
+					
 					System.out.println();
 					System.out.println("Entrada registrada com sucesso!");
 
 				} catch (IllegalArgumentException e) {
 					System.out.println();
 					System.out.println(e.getMessage());
+				}
+				catch (IOException e) {
+				    System.out.println("Erro ao salvar arquivos: " + e.getMessage());
 				}
 
 				sc.nextLine();
@@ -179,6 +203,8 @@ public class Programa {
 					sc.nextLine();
 
 					estoque.registrarSaida(new Movimentacao(produto, TipoMovimentacao.SAIDA, quantidade));
+					arquivoService.salvarProdutos(estoque.getProdutos());
+					arquivoService.salvarMovimentacoes(estoque.getMovimentacoes());
 
 					System.out.println();
 					System.out.println("Saida registrada com sucesso!");
@@ -186,6 +212,9 @@ public class Programa {
 				} catch (IllegalArgumentException e) {
 					System.out.println();
 					System.out.println(e.getMessage());
+				}
+				catch (IOException e) {
+				    System.out.println("Erro ao salvar arquivos: " + e.getMessage());
 				}
 				
 				sc.nextLine();

@@ -5,12 +5,19 @@ import java.util.List;
 
 import entidades.Movimentacao;
 import entidades.Produto;
-import entidades.TipoMovimentacao;
 
 public class EstoqueService {
 
 	private List<Produto> produtos = new ArrayList<>();
 	private List<Movimentacao> movimentacoes = new ArrayList<>();
+	
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+	
+	public List<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
+	}
 
 	public void cadastrarProduto(Produto produto) {
 		Produto produtoEncontrado = buscarProduto(produto.getCodigo());
@@ -113,23 +120,11 @@ public class EstoqueService {
 		}
 	}
 	
-	public void cadastrarDadosTeste() {
+	public void definirProdutos(List<Produto> produtos) {
+	    this.produtos = produtos;
+	}
 
-	    cadastrarProduto(new Produto(101, "Teclado", "Periféricos", 120.00, 10, 3));
-	    cadastrarProduto(new Produto(111, "Mouse", "Periféricos", 55.90, 15, 5));
-	    cadastrarProduto(new Produto(109, "Monitor", "Monitores", 899.90, 4, 5));
-	    cadastrarProduto(new Produto(104, "Cabo HDMI", "Acessórios", 25.50, 20, 10));
-	    cadastrarProduto(new Produto(121, "Notebook", "Computadores", 3500.00, 2, 3));
-
-	    registrarEntrada(new Movimentacao(buscarProduto(101), TipoMovimentacao.ENTRADA, 5));
-	    registrarSaida(new Movimentacao(buscarProduto(111), TipoMovimentacao.SAIDA, 3));
-	    registrarEntrada(new Movimentacao(buscarProduto(109), TipoMovimentacao.ENTRADA, 2));
-	    registrarSaida(new Movimentacao(buscarProduto(104), TipoMovimentacao.SAIDA, 4));
-	    registrarEntrada(new Movimentacao(buscarProduto(121), TipoMovimentacao.ENTRADA, 3));
-	    registrarSaida(new Movimentacao(buscarProduto(101), TipoMovimentacao.SAIDA, 2));
-	    registrarEntrada(new Movimentacao(buscarProduto(111), TipoMovimentacao.ENTRADA, 7));
-	    registrarSaida(new Movimentacao(buscarProduto(109), TipoMovimentacao.SAIDA, 1));
-	    registrarEntrada(new Movimentacao(buscarProduto(104), TipoMovimentacao.ENTRADA, 10));
-	    registrarSaida(new Movimentacao(buscarProduto(121), TipoMovimentacao.SAIDA, 1));
+	public void definirMovimentacoes(List<Movimentacao> movimentacoes) {
+	    this.movimentacoes = movimentacoes;
 	}
 }
