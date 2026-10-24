@@ -1,3 +1,4 @@
+
 package aplicacao;
 
 import java.io.IOException;
@@ -15,12 +16,14 @@ public class Programa {
 
 	public static void main(String[] args) {
 
+		// Configura a leitura de números e inicializa os serviços do sistema.
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
 
 		EstoqueService estoque = new EstoqueService();
 		ArquivoService arquivoService = new ArquivoService();
-		
+
+		// Carrega os produtos e o histórico de movimentações salvos nos arquivos CSV.
 		try {
 		    List<Produto> produtos = arquivoService.carregarProdutos();
 		    estoque.definirProdutos(produtos);
@@ -37,6 +40,7 @@ public class Programa {
 		int resposta, codigo, quantidade;
 		double preco;
 
+		// Mantém o menu em execução até o usuário escolher a opção de saída.
 		do {
 
 			System.out.println("=== CONTROLE DE ESTOQUE ===");
@@ -57,10 +61,12 @@ public class Programa {
 			resposta = sc.nextInt();
 			sc.nextLine();
 
+			// Direciona a execução para a funcionalidade escolhida no menu.
 			switch (resposta) {
 
 			case 1:
 
+				// Solicita os dados, cadastra o produto e salva a lista atualizada.
 				try {
 					System.out.println();
 					System.out.println("CADASTRAR PRODUTO");
@@ -95,13 +101,14 @@ public class Programa {
 				catch (IOException e) {
 				    System.out.println("Erro ao salvar arquivos: " + e.getMessage());
 				}
-				
+
 				sc.nextLine();
-				
+
 				break;
 
 			case 2:
 
+				// Ordena os produtos pelo código e exibe a listagem.
 				System.out.println();
 				System.out.println("PRODUTOS CADASTRADOS");
 				System.out.println();
@@ -112,8 +119,10 @@ public class Programa {
 				sc.nextLine();
 
 				break;
+
 			case 3:
 
+				// Busca um produto pelo código informado e exibe o resultado.
 				System.out.println();
 				System.out.println("BUSCAR PRODUTO");
 				System.out.println();
@@ -135,8 +144,10 @@ public class Programa {
 				sc.nextLine();
 
 				break;
+
 			case 4:
 
+				// Registra uma entrada, atualiza o estoque e salva os dados nos CSVs.
 				try {
 					System.out.println();
 					System.out.println("REGISTRAR ENTRADA DE PRODUTO");
@@ -162,8 +173,8 @@ public class Programa {
 
 					estoque.registrarEntrada(new Movimentacao(produto, TipoMovimentacao.ENTRADA, quantidade));
 					arquivoService.salvarProdutos(estoque.getProdutos());
-					arquivoService.salvarMovimentacoes(estoque.getMovimentacoes());			
-					
+					arquivoService.salvarMovimentacoes(estoque.getMovimentacoes());
+
 					System.out.println();
 					System.out.println("Entrada registrada com sucesso!");
 
@@ -178,8 +189,10 @@ public class Programa {
 				sc.nextLine();
 
 				break;
+
 			case 5:
 
+				// Registra uma saída, validando as regras de estoque no serviço.
 				try {
 					System.out.println();
 					System.out.println("REGISTRAR SAIDA DE PRODUTO");
@@ -216,12 +229,14 @@ public class Programa {
 				catch (IOException e) {
 				    System.out.println("Erro ao salvar arquivos: " + e.getMessage());
 				}
-				
+
 				sc.nextLine();
 
 				break;
+
 			case 6:
 
+				// Exibe os produtos que atingiram ou ficaram abaixo do estoque mínimo.
 				System.out.println();
 				System.out.println("ESTOQUE BAIXO");
 				System.out.println();
@@ -230,8 +245,10 @@ public class Programa {
 				sc.nextLine();
 
 				break;
+
 			case 7:
 
+				// Gera o relatório com os dados e os valores do estoque.
 				System.out.println();
 				System.out.println("RELATORIO");
 				System.out.println();
@@ -241,8 +258,10 @@ public class Programa {
 				sc.nextLine();
 
 				break;
+
 			case 8:
-				
+
+				// Exibe o histórico das movimentações registradas.
 				System.out.println();
 				System.out.println("MOVIMENTAÇÕES");
 				System.out.println();
@@ -252,11 +271,13 @@ public class Programa {
 				sc.nextLine();
 
 				break;
+
 			case 0:
 
 				System.out.println("Saindo...");
 
 				break;
+
 			default:
 
 				System.out.println("Opção inválida. Tente novamente.");
@@ -267,6 +288,7 @@ public class Programa {
 
 		} while (resposta != 0);
 
+		// Encerra a leitura de dados ao finalizar o programa.
 		sc.close();
 	}
 }

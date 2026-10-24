@@ -1,14 +1,16 @@
 package entidades;
 
+// Representa um produto e armazena suas informações no sistema de estoque.
 public class Produto {
-	
+
 	private int codigo;
 	private String nome;
 	private String categoria;
 	private double preco;
 	private int quantidade;
 	private int estoqueMinimo;
-	
+
+	// Inicializa um produto com seus dados e impede que a quantidade inicial seja negativa.
 	public Produto(int codigo, String nome, String categoria, double preco, int quantidade, int estoqueMinimo) {
 		this.codigo = codigo;
 		this.nome = nome;
@@ -22,6 +24,7 @@ public class Produto {
 		this.estoqueMinimo = estoqueMinimo;
 	}
 
+	// Métodos para consultar e alterar os dados do produto.
 	public int getCodigo() {
 		return codigo;
 	}
@@ -69,7 +72,8 @@ public class Produto {
 	public void setEstoqueMinimo(int estoqueMinimo) {
 		this.estoqueMinimo = estoqueMinimo;
 	}
-	
+
+	// Define como os principais dados do produto serão exibidos no terminal.
 	@Override
 	public String toString() {
 	    return String.format(
