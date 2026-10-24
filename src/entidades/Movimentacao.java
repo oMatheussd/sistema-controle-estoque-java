@@ -21,10 +21,6 @@ public class Movimentacao {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	public TipoMovimentacao getTipo() {
 		return tipo;
 	}
@@ -35,10 +31,6 @@ public class Movimentacao {
 
 	public int getQuantidade() {
 		return quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
 	}
 
 	public LocalDateTime getDataHora() {

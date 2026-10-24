@@ -13,6 +13,12 @@ public class EstoqueService {
 	private List<Movimentacao> movimentacoes = new ArrayList<>();
 
 	public void cadastrarProduto(Produto produto) {
+		Produto produtoEncontrado = buscarProduto(produto.getCodigo());
+		
+		if (produtoEncontrado != null) {
+			throw new IllegalArgumentException("O codigo informado já existe, tente novamente."); 
+		}
+		
 		produtos.add(produto);
 	}
 
@@ -47,14 +53,27 @@ public class EstoqueService {
 	}
 
 	public void registrarEntrada(Movimentacao movimentacao) {
-		movimentacoes.add(movimentacao);
 		Produto produto = movimentacao.getProduto();
+		
+		if (movimentacao.getQuantidade() <= 0) {
+			throw new IllegalArgumentException("A quantidade digitada deve ser maior que zero.");
+		}
+		
+		movimentacoes.add(movimentacao);
 		produto.setQuantidade(produto.getQuantidade() + movimentacao.getQuantidade());
 	}
 
 	public void registrarSaida(Movimentacao movimentacao) {
-		movimentacoes.add(movimentacao);
 		Produto produto = movimentacao.getProduto();
+		
+		if (movimentacao.getQuantidade() <= 0) {
+			throw new IllegalArgumentException("A quantidade digitada deve ser maior que zero.");
+		}
+		if (movimentacao.getQuantidade() > produto.getQuantidade()) {
+			throw new IllegalArgumentException("A quantidade digitada é maior que a do estoque atual. Tente novamente.");
+		}
+		
+		movimentacoes.add(movimentacao);
 		produto.setQuantidade(produto.getQuantidade() - movimentacao.getQuantidade());
 	}
 

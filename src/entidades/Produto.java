@@ -14,7 +14,11 @@ public class Produto {
 		this.nome = nome;
 		this.categoria = categoria;
 		this.preco = preco;
-		this.quantidade = quantidade;
+		if (quantidade < 0) {
+			throw new IllegalArgumentException("A quantidade digitada deve ser maior que zero.");
+		} else {
+			this.quantidade = quantidade;
+		}
 		this.estoqueMinimo = estoqueMinimo;
 	}
 

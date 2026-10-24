@@ -19,7 +19,8 @@ public class Programa {
 
 		estoque.cadastrarDadosTeste();
 
-		int resposta;
+		int resposta, codigo, quantidade;
+		double preco;
 
 		do {
 
@@ -45,32 +46,39 @@ public class Programa {
 
 			case 1:
 
-				System.out.println();
-				System.out.println("CADASTRAR PRODUTO");
-				System.out.println();
+				try {
+					System.out.println();
+					System.out.println("CADASTRAR PRODUTO");
+					System.out.println();
 
-				System.out.print("Codigo: ");
-				int codigo = sc.nextInt();
+					System.out.print("Codigo: ");
+					codigo = sc.nextInt();
+					sc.nextLine();
+					System.out.print("Nome: ");
+					String nome = sc.nextLine();
+					System.out.print("Categoria: ");
+					String categoria = sc.nextLine();
+					System.out.print("Preço: ");
+					preco = sc.nextDouble();
+					System.out.print("Quantidade: ");
+					quantidade = sc.nextInt();
+					System.out.print("Estoque minimo: ");
+					int estoqueMinimo = sc.nextInt();
+					sc.nextLine();
+
+					estoque.cadastrarProduto(new Produto(codigo, nome, categoria, preco, quantidade, estoqueMinimo));
+
+					System.out.println();
+					System.out.println("Produto cadastrado com sucesso!");
+
+				} catch (IllegalArgumentException e) {
+					System.out.println();
+					System.out.println(e.getMessage());
+					System.out.println();
+				}
+				
 				sc.nextLine();
-				System.out.print("Nome: ");
-				String nome = sc.nextLine();
-				System.out.print("Categoria: ");
-				String categoria = sc.nextLine();
-				System.out.print("Preço: ");
-				double preco = sc.nextDouble();
-				System.out.print("Quantidade: ");
-				int quantidade = sc.nextInt();
-				System.out.print("Estoque minimo: ");
-				int estoqueMinimo = sc.nextInt();
-				sc.nextLine();
-
-				estoque.cadastrarProduto(new Produto(codigo, nome, categoria, preco, quantidade, estoqueMinimo));
-
-				System.out.println();
-				System.out.println("Produto cadastrado com sucesso!");
-
-				sc.nextLine();
-
+				
 				break;
 
 			case 2:
@@ -110,63 +118,76 @@ public class Programa {
 				break;
 			case 4:
 
-				System.out.println();
-				System.out.println("REGISTRAR ENTRADA DE PRODUTO");
-				System.out.println();
+				try {
+					System.out.println();
+					System.out.println("REGISTRAR ENTRADA DE PRODUTO");
+					System.out.println();
 
-				do {
+					do {
 
-					System.out.print("Codigo do produto: ");
-					codigo = sc.nextInt();
+						System.out.print("Codigo do produto: ");
+						codigo = sc.nextInt();
+						sc.nextLine();
+
+						produto = estoque.buscarProduto(codigo);
+
+						if (produto == null) {
+							System.out.println("Produto não encontrado. Tente novamente.");
+						}
+					} while (produto == null);
+
+					System.out.println();
+					System.out.print("Quantidade de entrada: ");
+					quantidade = sc.nextInt();
 					sc.nextLine();
 
-					produto = estoque.buscarProduto(codigo);
+					estoque.registrarEntrada(new Movimentacao(produto, TipoMovimentacao.ENTRADA, quantidade));
 
-					if (produto == null) {
-						System.out.println("Produto não encontrado. Tente novamente.");
-					}
-				} while (produto == null);
+					System.out.println();
+					System.out.println("Entrada registrada com sucesso!");
 
-				System.out.println();
-				System.out.print("Quantidade de entrada: ");
-				quantidade = sc.nextInt();
-				sc.nextLine();
+				} catch (IllegalArgumentException e) {
+					System.out.println();
+					System.out.println(e.getMessage());
+				}
 
-				estoque.registrarEntrada(new Movimentacao(produto, TipoMovimentacao.ENTRADA, quantidade));
-
-				System.out.println();
-				System.out.println("Entrada registrada com sucesso!");
 				sc.nextLine();
 
 				break;
 			case 5:
 
-				System.out.println();
-				System.out.println("REGISTRAR SAIDA DE PRODUTO");
-				System.out.println();
+				try {
+					System.out.println();
+					System.out.println("REGISTRAR SAIDA DE PRODUTO");
+					System.out.println();
 
-				do {
+					do {
 
-					System.out.print("Codigo do produto: ");
-					codigo = sc.nextInt();
+						System.out.print("Codigo do produto: ");
+						codigo = sc.nextInt();
+						sc.nextLine();
+
+						produto = estoque.buscarProduto(codigo);
+
+						if (produto == null) {
+							System.out.println("Produto não encontrado. Tente novamente.");
+						}
+					} while (produto == null);
+
+					System.out.print("Quantidade de saida: ");
+					quantidade = sc.nextInt();
 					sc.nextLine();
 
-					produto = estoque.buscarProduto(codigo);
+					estoque.registrarSaida(new Movimentacao(produto, TipoMovimentacao.SAIDA, quantidade));
 
-					if (produto == null) {
-						System.out.println("Produto não encontrado. Tente novamente.");
-					}
-				} while (produto == null);
+					System.out.println();
+					System.out.println("Saida registrada com sucesso!");
 
-				System.out.println();
-				System.out.print("Quantidade de saida: ");
-				quantidade = sc.nextInt();
-				sc.nextLine();
-
-				estoque.registrarSaida(new Movimentacao(produto, TipoMovimentacao.SAIDA, quantidade));
-
-				System.out.println();
-				System.out.println("Saida registrada com sucesso!");
+				} catch (IllegalArgumentException e) {
+					System.out.println();
+					System.out.println(e.getMessage());
+				}
+				
 				sc.nextLine();
 
 				break;
