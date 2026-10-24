@@ -30,6 +30,21 @@ public class EstoqueService {
 		}
 		return null;
 	}
+	
+	public void ordenarProdutosPorCodigo() {
+		
+		for (int i =0; i < produtos.size(); i++) {
+			int indiceMenor = i;
+			for (int j = i + 1; j < produtos.size(); j++) {
+				if (produtos.get(j).getCodigo() < produtos.get(indiceMenor).getCodigo()) {
+					indiceMenor = j;
+				}
+			}
+			Produto temporario = produtos.get(i);
+			produtos.set(i, produtos.get(indiceMenor));
+			produtos.set(indiceMenor, temporario);
+		}	
+	}
 
 	public void registrarEntrada(Movimentacao movimentacao) {
 		movimentacoes.add(movimentacao);
@@ -82,20 +97,20 @@ public class EstoqueService {
 	public void cadastrarDadosTeste() {
 
 	    cadastrarProduto(new Produto(101, "Teclado", "Periféricos", 120.00, 10, 3));
-	    cadastrarProduto(new Produto(102, "Mouse", "Periféricos", 55.90, 15, 5));
-	    cadastrarProduto(new Produto(103, "Monitor", "Monitores", 899.90, 4, 5));
+	    cadastrarProduto(new Produto(111, "Mouse", "Periféricos", 55.90, 15, 5));
+	    cadastrarProduto(new Produto(109, "Monitor", "Monitores", 899.90, 4, 5));
 	    cadastrarProduto(new Produto(104, "Cabo HDMI", "Acessórios", 25.50, 20, 10));
-	    cadastrarProduto(new Produto(105, "Notebook", "Computadores", 3500.00, 2, 3));
+	    cadastrarProduto(new Produto(121, "Notebook", "Computadores", 3500.00, 2, 3));
 
 	    registrarEntrada(new Movimentacao(buscarProduto(101), TipoMovimentacao.ENTRADA, 5));
-	    registrarSaida(new Movimentacao(buscarProduto(102), TipoMovimentacao.SAIDA, 3));
-	    registrarEntrada(new Movimentacao(buscarProduto(103), TipoMovimentacao.ENTRADA, 2));
+	    registrarSaida(new Movimentacao(buscarProduto(111), TipoMovimentacao.SAIDA, 3));
+	    registrarEntrada(new Movimentacao(buscarProduto(109), TipoMovimentacao.ENTRADA, 2));
 	    registrarSaida(new Movimentacao(buscarProduto(104), TipoMovimentacao.SAIDA, 4));
-	    registrarEntrada(new Movimentacao(buscarProduto(105), TipoMovimentacao.ENTRADA, 3));
+	    registrarEntrada(new Movimentacao(buscarProduto(121), TipoMovimentacao.ENTRADA, 3));
 	    registrarSaida(new Movimentacao(buscarProduto(101), TipoMovimentacao.SAIDA, 2));
-	    registrarEntrada(new Movimentacao(buscarProduto(102), TipoMovimentacao.ENTRADA, 7));
-	    registrarSaida(new Movimentacao(buscarProduto(103), TipoMovimentacao.SAIDA, 1));
+	    registrarEntrada(new Movimentacao(buscarProduto(111), TipoMovimentacao.ENTRADA, 7));
+	    registrarSaida(new Movimentacao(buscarProduto(109), TipoMovimentacao.SAIDA, 1));
 	    registrarEntrada(new Movimentacao(buscarProduto(104), TipoMovimentacao.ENTRADA, 10));
-	    registrarSaida(new Movimentacao(buscarProduto(105), TipoMovimentacao.SAIDA, 1));
+	    registrarSaida(new Movimentacao(buscarProduto(121), TipoMovimentacao.SAIDA, 1));
 	}
 }

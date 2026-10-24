@@ -79,6 +79,7 @@ public class Programa {
 				System.out.println("PRODUTOS CADASTRADOS");
 				System.out.println();
 
+				estoque.ordenarProdutosPorCodigo();
 				estoque.listarProdutos();
 
 				sc.nextLine();
