@@ -18,8 +18,8 @@ import entidades.TipoMovimentacao;
 public class ArquivoService {
 
     // Define os caminhos dos arquivos que armazenam os produtos e as movimentações.
-    private final String arquivoProdutos = "dados/produtos.csv";
-    private final String arquivoMovimentacoes = "dados/movimentacoes.csv";
+	private final String arquivoProdutos = "dados/produtos.csv";
+	private final String arquivoMovimentacoes = "dados/movimentacoes.csv";
 
     // Salva os dados dos produtos no arquivo CSV.
     public void salvarProdutos(List<Produto> produtos)
@@ -54,7 +54,7 @@ public class ArquivoService {
 
         List<Produto> produtos = new ArrayList<>();
         File arquivo = new File(arquivoProdutos);
-
+        
         // Retorna uma lista vazia caso o arquivo ainda não exista.
         if (!arquivo.exists()) {
             return produtos;
